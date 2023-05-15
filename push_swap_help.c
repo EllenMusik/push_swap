@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:08:36 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/09 20:14:44 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/05/15 18:49:57 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ void	list_add_back(t_swag **lst, t_swag *new_last)
 		new_last->previous = old_last;
 	}
 	if (!*lst)
+	{
 		*lst = new_last;
+		new_last->next = new_last;
+		new_last->previous = new_last;
+	}
 }
 
 t_swag	*list_find_last(t_swag *lst)

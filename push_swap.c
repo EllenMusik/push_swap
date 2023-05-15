@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:12:51 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/09 20:59:06 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:02:07 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,14 @@ static int	check_for_valid_nbr(char **stack, int i)
 
 	while (stack[i])
 	{
+		k = 0;
+		while (stack[i][k])
+			k++;
+		if (k > 11)
+			return (1);
 		k = i + 1;
 		temp_nbr = ft_atol(stack[i]);
-		if (temp_nbr > 2147483647)
+		if (temp_nbr > 2147483647 || temp_nbr < -2147483648)
 			return (1);
 		while (stack[k])
 		{
@@ -39,21 +44,23 @@ static int	check_for_valid_nbr(char **stack, int i)
 static int	check_for_argv_error(char **argv, int startlist)
 {
 	int	k;
+	int	i;
 
+	i = startlist;
 	k = 0;
-	if (argv[startlist][0] == '\0')
+	if (argv[i][0] == '\0')
 		return (1);
-	while (argv[startlist])
+	while (argv[i])
 	{
-		while (argv[startlist][k])
+		while (argv[i][k])
 		{
-			if ((argv[startlist][k] >= '0' && argv[startlist][k] <= '9')
-			|| (argv[startlist][k] == '-' && argv[startlist][k + 1] != '-'))
+			if ((argv[i][k] >= '0' && argv[i][k] <= '9')
+			|| (argv[i][k] == '-' && argv[i][k + 1] != '-'))
 				k++;
 			else
 				return (1);
 		}
-		startlist++;
+		i++;
 		k = 0;
 	}
 	if (1 == check_for_valid_nbr(argv, startlist))
@@ -111,11 +118,8 @@ int	main(int argc, char **argv)
 	if (1 == input_handling(stack_a, argc, argv))
 		return (1);
 	test_node = *stack_a;
-	printf("1. node:%i\n", test_node->number);
-	test_node = test_node->next;
-	printf("2. node:%i\n", test_node->number);
-	test_node = test_node->next;
-	printf("2. node:%i\n", test_node->number);
+	printf("1. node: %i\n", test_node->number);
+	sorting_commands(stack_a);
 	free_list(stack_a);
 	free (stack_a);
 	return (0);
