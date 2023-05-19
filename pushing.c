@@ -6,52 +6,11 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:54:59 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/15 22:20:24 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:21:44 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	sorting_commands(t_swag **stack_a)
-{
-	t_swag	**stack_b;
-
-	stack_b = malloc(sizeof(t_swag *));
-	*stack_b = NULL;
-	print_stack_a_and_b(stack_a, stack_b);
-	push_a_to_b(stack_a, stack_b);
-	push_a_to_b(stack_a, stack_b);
-	print_stack_a_and_b(stack_a, stack_b);
-	rotate_both(stack_a, stack_b);
-	print_stack_a_and_b(stack_a, stack_b);
-	rotate_a(stack_a);
-	rotate_b(stack_b);
-	print_stack_a_and_b(stack_a, stack_b);
-	return (0);
-}
-
-void	print_stack_a_and_b(t_swag **stack_a, t_swag **stack_b)
-{
-	t_swag	*test_node;
-	t_swag	*last_node;
-
-	last_node = list_find_last(*stack_a);
-	test_node = *stack_a;
-	while (test_node && test_node != last_node)
-	{
-		printf("a: %i\n", test_node->number);
-		test_node = test_node->next;
-	}
-	printf("%i\n\n", test_node->number);
-	last_node = list_find_last(*stack_b);
-	test_node = *stack_b;
-	while (test_node && test_node != last_node)
-	{
-		printf("b: %i\n", test_node->number);
-		test_node = test_node->next;
-	}
-	printf("%i\n\n", test_node->number);
-}
 
 void	push_a_to_b(t_swag **stack_a, t_swag **stack_b)
 {

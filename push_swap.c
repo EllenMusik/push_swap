@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:12:51 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/15 15:02:07 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/05/17 21:41:29 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,18 +111,24 @@ static int	input_handling(t_swag **stack_a, int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_swag	**stack_a;
+	t_swag	**stack_b;
 	t_swag	*test_node;
 
 	stack_a = malloc(sizeof(t_swag *));
 	*stack_a = NULL;
+	stack_b = malloc(sizeof(t_swag *));
+	*stack_b = NULL;
 	if (1 == input_handling(stack_a, argc, argv))
 		return (1);
 	test_node = *stack_a;
-	printf("1. node: %i\n", test_node->number);
-	sorting_commands(stack_a);
+	print_stack_a_and_b(stack_a, stack_b);
+	if (is_it_already_sorted(stack_a) == 0)
+		return (free_list(stack_a), free (stack_a), free (stack_b), 0);
+	sorting_commands(stack_a, stack_b);
+	//print_stack_a_and_b(stack_a);
 	free_list(stack_a);
-	free (stack_a);
-	return (0);
+	free_list(stack_b);
+	return (free (stack_a), free (stack_b), 0);
 }
 
 // void	ft_change_start_of_list(t_list **stk_a)
