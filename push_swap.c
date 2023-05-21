@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:12:51 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/17 21:41:29 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:40:44 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	main(int argc, char **argv)
 	if (1 == input_handling(stack_a, argc, argv))
 		return (1);
 	test_node = *stack_a;
-	print_stack_a_and_b(stack_a, stack_b);
+	//print_stack_a_and_b(stack_a, stack_b);
 	if (is_it_already_sorted(stack_a) == 0)
 		return (free_list(stack_a), free (stack_a), free (stack_b), 0);
 	sorting_commands(stack_a, stack_b);

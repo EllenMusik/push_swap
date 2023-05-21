@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:02:50 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/18 21:59:48 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:15:10 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ int		sorting_when_3_numbers(t_swag **stack_a);
 int		list_node_count(t_swag *stack);
 int		sorting_3_2(t_swag *tmp1, t_swag *tmp2, t_swag *tmp3, t_swag **stack_a);
 int		get_index(t_swag **stack_a);
-int		sort_copy(t_swag **stack_copy);
+void	sort_copy(t_swag **stack_copy);
 void	swap_nodes(t_swag *node1, t_swag *node2);
 int		copy_list(t_swag **stack_a, t_swag **stack_copy);
 void	assign_index(t_swag **stack_a, t_swag **stack_copy);
+int		sort_5(t_swag **stack_a, t_swag **stack_b);
+int		sort_5_2(t_swag **stack_a, t_swag **stack_b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:21:23 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/18 22:02:51 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/05/19 20:38:58 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	sorting_commands(t_swag **stack_a, t_swag **stack_b)
 {
+	get_index(stack_a);
 	if (3 == list_node_count(*stack_a))
 	{
 		sorting_when_3_numbers(stack_a);
@@ -28,11 +29,11 @@ int	sorting_commands(t_swag **stack_a, t_swag **stack_b)
 	}
 	if (5 >= list_node_count(*stack_a))
 	{
-		sort_5(stack_a, stack_b),
-		print_stack_a_and_b(stack_a, stack_b);
+		sort_5(stack_a, stack_b);
+		//print_stack_a_and_b(stack_a, stack_b);
 		return (0);
 	}
-	print_stack_a_and_b(stack_a, stack_b);
+	//print_stack_a_and_b(stack_a, stack_b);
 	return (0);
 }
 
@@ -54,27 +55,34 @@ int	sort_5_2(t_swag **stack_a, t_swag **stack_b)
 {
 	t_swag	*temp_node1;
 	t_swag	*new_node;
-	int		i;
+	t_swag	*last_node;
 
-	i = 0;
 	temp_node1 = *stack_a;
 	new_node = *stack_b;
+	last_node = temp_node1->previous;
 	while (new_node)
 	{
-		if (new_node < temp_node1)
-			push_b_to_a(stack_a, stack_b);
-		else
+		while (temp_node1 != last_node)
+		{
+			if (new_node->number < temp_node1->number)
+				push_b_to_a(stack_a, stack_b);
+			else
+				rotate_a(stack_a);
+			print_stack_a_and_b(stack_a, stack_b);
+			temp_node1 = *stack_a;
+		}
+		if (new_node->number > temp_node1->number)
 		{
 			rotate_a(stack_a);
-			i++;
+			push_b_to_a(stack_a, stack_b);
+			last_node = new_node;
 		}
-		temp_node1 = *stack_a;
+		while (*stack_a != last_node->next)
+			reverse_rotate_a(stack_a);
 		new_node = *stack_b;
 	}
-	while (i > 0)
-	{
-		reverse_rotate_a
-	}
+	print_stack_a_and_b(stack_a, stack_b);
+	return (0);
 }
 
 int	is_it_already_sorted(t_swag **stack_a)

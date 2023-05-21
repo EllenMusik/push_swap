@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:54:59 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/16 14:21:44 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/05/19 20:20:15 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,23 @@ int	push_stack_1_to_2(t_swag **stack_1, t_swag **stack_2)
 	if (!*stack_1)
 		return (0);
 	temp_node = *stack_1;
-	temp_new_first = temp_node->next;
-	temp_last = temp_node->previous;
+	if (temp_node == temp_node->next)
+	{
+		temp_new_first = NULL;
+		temp_last = NULL;
+	}
+	else
+	{
+		temp_new_first = temp_node->next;
+		temp_last = temp_node->previous;
+	}
 	list_add_front(stack_2, temp_node);
 	*stack_1 = temp_new_first;
-	temp_last->next = temp_new_first;
-	temp_new_first->previous = temp_last;
+	if (temp_new_first)
+	{
+		temp_last->next = temp_new_first;
+		temp_new_first->previous = temp_last;
+	}
 	return (0);
 }
 

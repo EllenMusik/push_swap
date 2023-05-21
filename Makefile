@@ -8,7 +8,7 @@ NAME = push_swap
 
 LIBFT= libft/libft.a
 
-FILES=	push_swap.c push_swap_help.c pushing.c swapping.c rotating.c reverse_rotating.c sorting.c
+FILES=	push_swap.c push_swap_help.c pushing.c swapping.c rotating.c reverse_rotating.c sorting.c input_check.c
 
 O_FILES= $(FILES:%.c=%.o)
 
