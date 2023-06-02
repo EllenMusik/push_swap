@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ellensteiner <ellensteiner@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:02:50 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/19 12:15:10 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:55:22 by ellensteine      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void	swap_nodes(t_swag *node1, t_swag *node2);
 int		copy_list(t_swag **stack_a, t_swag **stack_copy);
 void	assign_index(t_swag **stack_a, t_swag **stack_copy);
 int		sort_5(t_swag **stack_a, t_swag **stack_b);
-int		sort_5_2(t_swag **stack_a, t_swag **stack_b);
+void	sort_5_2(t_swag **stack_a, t_swag **stack_b);
 
 #endif

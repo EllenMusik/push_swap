@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ellensteiner <ellensteiner@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:21:23 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/19 20:38:58 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:58:54 by ellensteine      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	sorting_commands(t_swag **stack_a, t_swag **stack_b)
 
 int	sort_5(t_swag **stack_a, t_swag **stack_b)
 {
+	t_swag	*temp_node1;
+
 	push_a_to_b(stack_a, stack_b);
 	if (3 == list_node_count(*stack_a))
 		sorting_when_3_numbers(stack_a);
@@ -48,41 +50,56 @@ int	sort_5(t_swag **stack_a, t_swag **stack_b)
 		return (0);
 	}
 	sort_5_2(stack_a, stack_b);
+		temp_node1 = *stack_a;
+	while (temp_node1->number != 1)
+		{
+			rotate_a(stack_a);
+			temp_node1 = *stack_a;
+		}
+	print_stack_a_and_b(stack_a, stack_b);
 	return (0);
 }
 
-int	sort_5_2(t_swag **stack_a, t_swag **stack_b)
+void	sort_5_2(t_swag **stack_a, t_swag **stack_b)
 {
 	t_swag	*temp_node1;
 	t_swag	*new_node;
-	t_swag	*last_node;
+	int pushed;
 
-	temp_node1 = *stack_a;
+	pushed = 0;
 	new_node = *stack_b;
-	last_node = temp_node1->previous;
 	while (new_node)
 	{
-		while (temp_node1 != last_node)
+		while (pushed == 0)
 		{
-			if (new_node->number < temp_node1->number)
+			temp_node1 = *stack_a;
+			if (new_node->number < temp_node1->number 
+				&& new_node->number > temp_node1->previous->number)
+				
+			{
 				push_b_to_a(stack_a, stack_b);
+				pushed = 1;
+			}
+			else if (new_node->number > temp_node1->number 
+					&& temp_node1->next->number < temp_node1->number)
+			{
+				rotate_a(stack_a);
+				push_b_to_a(stack_a, stack_b);
+				pushed = 1;	
+			}
+			else if (new_node->number < temp_node1->number 
+					&& temp_node1->next->number < temp_node1->number)
+			{
+				rotate_a(stack_a);
+				push_b_to_a(stack_a, stack_b);
+				pushed = 1;
+			}
 			else
 				rotate_a(stack_a);
-			print_stack_a_and_b(stack_a, stack_b);
-			temp_node1 = *stack_a;
 		}
-		if (new_node->number > temp_node1->number)
-		{
-			rotate_a(stack_a);
-			push_b_to_a(stack_a, stack_b);
-			last_node = new_node;
-		}
-		while (*stack_a != last_node->next)
-			reverse_rotate_a(stack_a);
+		pushed = 0;
 		new_node = *stack_b;
 	}
-	print_stack_a_and_b(stack_a, stack_b);
-	return (0);
 }
 
 int	is_it_already_sorted(t_swag **stack_a)

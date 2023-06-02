@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ellensteiner <ellensteiner@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:12:51 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/19 19:40:44 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/05/26 02:39:10 by ellensteine      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	main(int argc, char **argv)
 {
 	t_swag	**stack_a;
 	t_swag	**stack_b;
-	t_swag	*test_node;
+	//t_swag	*test_node;
 
 	stack_a = malloc(sizeof(t_swag *));
 	*stack_a = NULL;
@@ -120,7 +120,7 @@ int	main(int argc, char **argv)
 	*stack_b = NULL;
 	if (1 == input_handling(stack_a, argc, argv))
 		return (1);
-	test_node = *stack_a;
+	//test_node = *stack_a;
 	//print_stack_a_and_b(stack_a, stack_b);
 	if (is_it_already_sorted(stack_a) == 0)
 		return (free_list(stack_a), free (stack_a), free (stack_b), 0);
