@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:54:59 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/07 23:19:05 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/06/08 00:04:25 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	push_b_to_a(t_swag **stack_a, t_swag **stack_b)
 	write(1, "pa\n", 3);
 }
 
+/* pushes the first element from stack 1 to be the first elemnt from stack 2 */
 int	push_stack_1_to_2(t_swag **stack_1, t_swag **stack_2)
 {
 	t_swag	*temp_node;

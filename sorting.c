@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:21:23 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/07 23:20:43 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/06/08 00:03:44 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,16 @@ int	list_node_count(t_swag *stack)
 	return (counter);
 }
 
+/* uses bits to sort big amounts of numbers.
+It starts from the last bit of each number and checks if it is 1 or 0.
+if it is 0, it gets pushed to b,
+if it is 1, we rotate a and lookat the same bit of the next number.
+After the bit is checked for every number,
+everything in b gets pushed to a again and the next bit from the back is checked
+until the stack_a is completely sorted.
+this works, because 1 is bigger than 0,
+and so the gigger number stays in a (= gets further down)
+and the smaller numbers are put at the front. */
 int	radix_sort(t_swag **stack_a, t_swag **stack_b)
 {
 	int	max_number;

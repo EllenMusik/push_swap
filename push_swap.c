@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:12:51 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/07 23:10:45 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/06/08 00:09:22 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include "push_swap.h"
 
+/* checks if the number is in the integer (int) range
+and if any number is duplicated */
 static int	check_for_valid_nbr(char **stack, int i)
 {
 	long	temp_nbr;
@@ -41,6 +43,7 @@ static int	check_for_valid_nbr(char **stack, int i)
 	return (0);
 }
 
+/* checks if the given argument only contains numbers (/negative numbers) */
 static int	check_for_argv_error(char **argv, int startlist)
 {
 	int	k;
@@ -68,6 +71,7 @@ static int	check_for_argv_error(char **argv, int startlist)
 	return (0);
 }
 
+/* checks if the passed list in given as 1 argument and needs to be splitted */
 static int	check_for_stoopid_list(char *arg, t_swag **stack_a)
 {
 	int		i;
@@ -89,6 +93,7 @@ static int	check_for_stoopid_list(char *arg, t_swag **stack_a)
 	return (free(splitted_list), 0);
 }
 
+/* handles the input checking functions and retruns an Error if nessesarry */
 static int	input_handling(t_swag **stack_a, int argc, char **argv)
 {	
 	if (argc < 2)

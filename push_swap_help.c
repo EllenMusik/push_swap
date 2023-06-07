@@ -6,12 +6,13 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:08:36 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/07 23:18:17 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/06/08 00:13:41 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* creates a new node with the given integer as its content */
 t_swag	*list_new_node(int content)
 {
 	t_swag	*node;
@@ -26,6 +27,7 @@ t_swag	*list_new_node(int content)
 	return (node);
 }
 
+/* adds the given node to the back of the given list */
 void	list_add_back(t_swag **lst, t_swag *new_last)
 {
 	t_swag	*old_last;
@@ -48,6 +50,7 @@ void	list_add_back(t_swag **lst, t_swag *new_last)
 	}
 }
 
+/* finds the last node of the given circular list */
 t_swag	*list_find_last(t_swag *lst)
 {
 	t_swag	*adresse;
@@ -61,6 +64,7 @@ t_swag	*list_find_last(t_swag *lst)
 	return (adresse);
 }
 
+/* create the list "stack_a", made out of the given arguments/numbers */
 int	make_the_list(char **argv, t_swag **stack_a, int i)
 {
 	int		temp;
@@ -81,6 +85,7 @@ int	make_the_list(char **argv, t_swag **stack_a, int i)
 	return (0);
 }
 
+/* frees a circular list and all its contents */
 void	free_list(t_swag **lst)
 {
 	t_swag	*start;

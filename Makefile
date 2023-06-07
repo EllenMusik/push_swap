@@ -1,14 +1,14 @@
 NAME= push_swap.a
 CC = gcc
 CFLAGS= -Wall -Werror -Wextra
-DEBUG = -fsanitize=address -g
+#DEBUG = -fsanitize=address -g
 HEADER= push_swap.h
 RM= rm -rf
 NAME = push_swap
 
 LIBFT= libft/libft.a
 
-FILES=	push_swap.c push_swap_help.c pushing.c swapping.c rotating.c reverse_rotating.c sorting.c input_check.c sorting_3_and_5.c
+FILES=	push_swap.c push_swap_help.c pushing.c swapping.c rotating.c reverse_rotating.c sorting.c getting_the_index.c sorting_3_and_5.c
 
 O_FILES= $(FILES:%.c=%.o)
 

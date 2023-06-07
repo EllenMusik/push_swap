@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_check.c                                      :+:      :+:    :+:   */
+/*   getting_the_index.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:42:57 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/07 23:40:12 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/06/08 00:18:10 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* creates a copy of "stack_a and delets it again
+after using it for getting the index"*/
 int	get_index(t_swag **stack_a)
 {
 	t_swag	**stack_copy;
@@ -31,6 +33,7 @@ int	get_index(t_swag **stack_a)
 	return (0);
 }
 
+/* assigns the index to the sorted copy of "stack_a" */
 void	assign_index(t_swag **stack_a, t_swag **stack_copy)
 {
 	t_swag	*temp_node;
@@ -51,6 +54,7 @@ void	assign_index(t_swag **stack_a, t_swag **stack_copy)
 	replace_with_index(stack_a, stack_copy);
 }
 
+/* replaces the numbers in "stack_a" with it's index */
 void	replace_with_index(t_swag **stack_a, t_swag **stack_copy)
 {
 	t_swag	*copy_node;
@@ -73,6 +77,7 @@ void	replace_with_index(t_swag **stack_a, t_swag **stack_copy)
 	temp_node->number = copy_node->index;
 }
 
+/* uses a simple bubble sort algorithm to sort the numbers in "stack-copy" */
 void	sort_copy(t_swag **stack_copy)
 {
 	t_swag	*node1;
@@ -98,6 +103,7 @@ void	sort_copy(t_swag **stack_copy)
 	}
 }
 
+/* copys every node from "stack_a" to "stack_copy" */
 int	copy_list(t_swag **stack_a, t_swag **stack_copy)
 {
 	t_swag	*last_node;
