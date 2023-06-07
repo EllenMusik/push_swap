@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:42:57 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/19 19:56:42 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/06/07 23:40:12 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,19 @@ int	get_index(t_swag **stack_a)
 	*stack_copy = NULL;
 	if (1 == copy_list(stack_a, stack_copy))
 	{
-		/* error handling and freeing shit */
+		write(2, "ERROR\n", 6);
+		free_list(stack_copy);
+		free (stack_copy);
 	}
 	sort_copy(stack_copy);
 	assign_index(stack_a, stack_copy);
-	// print_stack_a_and_b(stack_a, stack_copy);
-	/* free copy stack */
+	free_list(stack_copy);
+	free (stack_copy);
 	return (0);
 }
 
 void	assign_index(t_swag **stack_a, t_swag **stack_copy)
 {
-	t_swag	*copy_node;
 	t_swag	*temp_node;
 	t_swag	*last_node;
 	int		index;
@@ -47,6 +48,15 @@ void	assign_index(t_swag **stack_a, t_swag **stack_copy)
 	}
 	if (temp_node)
 		temp_node->index = index;
+	replace_with_index(stack_a, stack_copy);
+}
+
+void	replace_with_index(t_swag **stack_a, t_swag **stack_copy)
+{
+	t_swag	*copy_node;
+	t_swag	*temp_node;
+	t_swag	*last_node;
+
 	copy_node = *stack_copy;
 	temp_node = *stack_a;
 	last_node = temp_node->previous;
@@ -86,15 +96,6 @@ void	sort_copy(t_swag **stack_copy)
 		}
 		node1 = *stack_copy;
 	}
-}
-
-void	swap_nodes(t_swag *node1, t_swag *node2)
-{
-	int	temp;
-
-	temp = node1->number;
-	node1->number = node2->number;
-	node2->number = temp;
 }
 
 int	copy_list(t_swag **stack_a, t_swag **stack_copy)

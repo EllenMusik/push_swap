@@ -6,18 +6,20 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:54:59 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/19 20:20:15 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/06/07 23:19:05 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* pushes the first element from stack a to be the first elemnt from stack b */
 void	push_a_to_b(t_swag **stack_a, t_swag **stack_b)
 {
 	push_stack_1_to_2(stack_a, stack_b);
 	write(1, "pb\n", 3);
 }
 
+/* pushes the first element from stack b to be the first elemnt from stack a */
 void	push_b_to_a(t_swag **stack_a, t_swag **stack_b)
 {
 	push_stack_1_to_2(stack_b, stack_a);
@@ -53,6 +55,8 @@ int	push_stack_1_to_2(t_swag **stack_1, t_swag **stack_2)
 	return (0);
 }
 
+/* adds the Element to the front of the list,
+making it the new first item in the list */
 void	list_add_front(t_swag **lst, t_swag *new_first)
 {
 	t_swag	*old_first;

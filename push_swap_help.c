@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:08:36 by esteiner          #+#    #+#             */
-/*   Updated: 2023/05/15 18:49:57 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/06/07 23:18:17 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,23 +101,3 @@ void	free_list(t_swag **lst)
 		*lst = NULL;
 	}
 }
-
-// void	free_list(int i, t_swag **lst)
-// {
-// 	t_swag	*adresse;
-// 	t_swag	*temporary;
-
-// 	adresse = *lst;
-// 	if (*lst != NULL)
-// 	{
-// 		while (i > 1)
-// 		{
-// 			temporary = adresse->next;
-// 			free(adresse);
-// 			adresse = temporary;
-// 			i--;
-// 		}
-// 		//free(adresse);
-// 		*lst = NULL;
-// 	}
-// }
