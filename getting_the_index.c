@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:42:57 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/08 00:18:10 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:52:28 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_index(t_swag **stack_a)
 	*stack_copy = NULL;
 	if (1 == copy_list(stack_a, stack_copy))
 	{
-		write(2, "ERROR\n", 6);
+		write(2, "Error\n", 6);
 		free_list(stack_copy);
 		free (stack_copy);
 	}

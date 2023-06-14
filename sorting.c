@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:21:23 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/08 00:03:44 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:30:20 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,19 @@ int	is_it_already_sorted(t_swag **stack_a)
 {
 	t_swag	*temp_node;
 	t_swag	*last_node;
-	int		previous_number;
+	t_swag	*previous_node;
 
+	previous_node = NULL;
 	temp_node = *stack_a;
 	last_node = list_find_last(*stack_a);
 	while (temp_node && temp_node != last_node)
 	{
-		if (previous_number && temp_node->number < previous_number)
+		if (previous_node && temp_node->number < previous_node->number)
 			return (1);
-		previous_number = temp_node->number;
+		previous_node = temp_node;
 		temp_node = temp_node->next;
 	}
-	if (temp_node && previous_number && temp_node->number < previous_number)
+	if (temp_node && previous_node && temp_node->number < previous_node->number)
 		return (1);
 	return (0);
 }

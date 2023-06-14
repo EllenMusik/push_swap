@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:12:51 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/08 00:09:22 by esteiner         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:40:53 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	check_for_stoopid_list(char *arg, t_swag **stack_a)
 	if (splitted_list == 0)
 		return (1);
 	if (1 == check_for_argv_error(splitted_list, 0))
-		return (write(2, "ERROR\n", 6), 1);
+		return (write(2, "Error\n", 6), 1);
 	if (1 == make_the_list(splitted_list, stack_a, 0))
 		return (free(stack_a), 1);
 	while (splitted_list[i])
@@ -106,7 +106,7 @@ static int	input_handling(t_swag **stack_a, int argc, char **argv)
 	if (argc > 2)
 	{
 		if (1 == check_for_argv_error(argv, 1))
-			return (write(2, "ERROR\n", 6), 1);
+			return (write(2, "Error\n", 6), 1);
 		if (1 == make_the_list(argv, stack_a, 1))
 			return (free(stack_a), 1);
 	}
@@ -132,18 +132,27 @@ int	main(int argc, char **argv)
 	return (free (stack_a), free (stack_b), 0);
 }
 
-// void	ft_change_start_of_list(t_list **stk_a)
+// void	print_stack_a_and_b(t_swag **stack_a, t_swag **stack_b)
 // {
-// 	t_list *temp;
+// 	t_swag	*test_node;
+// 	t_swag	*last_node;
 
-// 	temp = *stk_a;
-// 	(*stk_a)->next;
-// 	temp->next;
-// }
-
-// void	ft_test(t_list *stk_a)
-// {
-// 	stk_a->next;
-// 	stk_a->content;
-// 	ft_change_start_of_list(&stk_a);
+// 	last_node = list_find_last(*stack_a);
+// 	test_node = *stack_a;
+// 	while (test_node && test_node != last_node)
+// 	{
+// 		printf("a: %i\n", test_node->number);
+// 		test_node = test_node->next;
+// 	}
+// 	if (test_node)
+// 		printf("a: %i\n\n", test_node->number);
+// 	last_node = list_find_last(*stack_b);
+// 	test_node = *stack_b;
+// 	while (test_node && test_node != last_node)
+// 	{
+// 		printf("b: %i\n", test_node->number);
+// 		test_node = test_node->next;
+// 	}
+// 	if (test_node)
+// 		printf("b: %i\n\n", test_node->number);
 // }
