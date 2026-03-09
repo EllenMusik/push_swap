@@ -12,6 +12,7 @@ OBJ_DIR= obj
 FILES=	push_swap.c push_swap_help.c operations/pushing.c \
 		operations/swapping.c operations/rotating.c operations/reverse_rotating.c \
 		sorting.c getting_the_index.c sorting_3_and_5.c cost_calculate.c \
+		find_target_position.c execute_lowest_cost.c
 
 O_FILES= $(FILES:%.c=$(OBJ_DIR)/%.o)
 

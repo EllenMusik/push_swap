@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 22:03:40 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/09 13:49:18 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 17:48:05 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	rotate_b(t_swag **stack_b)
 	write(1, "rb\n", 3);
 }
 
-/// @brief rotates both stacks so that the first node is now the last one 
+/// @brief rotates both stacks so that the first node is now the last one
 /// @param stack_a pointer to the first node of stack a
 /// @param stack_b pointer to the first node of stack b
 /// @return nothing, but writes "rr\n" to the standard output
 void	rotate_both(t_swag **stack_a, t_swag **stack_b)
 {
-    if (stack_a && *stack_a && (*stack_a)->next != *stack_a)
-        *stack_a = (*stack_a)->next;
-    if (stack_b && *stack_b && (*stack_b)->next != *stack_b)
-        *stack_b = (*stack_b)->next;
-    write(1, "rr\n", 3);
+	if (stack_a && *stack_a && (*stack_a)->next != *stack_a)
+		*stack_a = (*stack_a)->next;
+	if (stack_b && *stack_b && (*stack_b)->next != *stack_b)
+		*stack_b = (*stack_b)->next;
+	write(1, "rr\n", 3);
 }

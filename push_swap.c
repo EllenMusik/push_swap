@@ -6,13 +6,13 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:12:51 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/06 13:18:01 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 17:48:29 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include <stdio.h>
 #include <unistd.h>
-#include "push_swap.h"
 
 /* checks if the number is in the integer (int) range
 and if any number is duplicated */
@@ -57,8 +57,8 @@ static int	check_for_argv_error(char **argv, int startlist)
 	{
 		while (argv[i][k])
 		{
-			if ((argv[i][k] >= '0' && argv[i][k] <= '9')
-			|| (argv[i][k] == '-' && argv[i][k + 1] != '-'))
+			if ((argv[i][k] >= '0' && argv[i][k] <= '9') || (argv[i][k] == '-'
+					&& argv[i][k + 1] != '-'))
 				k++;
 			else
 				return (1);
@@ -95,7 +95,7 @@ static int	check_for_stoopid_list(char *arg, t_swag **stack_a)
 
 /* handles the input checking functions and retruns an Error if nessesarry */
 static int	input_handling(t_swag **stack_a, int argc, char **argv)
-{	
+{
 	if (argc < 2)
 		return (0);
 	if (argc == 2)
@@ -125,11 +125,11 @@ int	main(int argc, char **argv)
 	if (1 == input_handling(stack_a, argc, argv))
 		return (1);
 	if (is_it_already_sorted(stack_a) == 0)
-		return (free_list(stack_a), free (stack_a), free (stack_b), 0);
+		return (free_list(stack_a), free(stack_a), free(stack_b), 0);
 	sorting_commands(stack_a, stack_b);
 	free_list(stack_a);
 	free_list(stack_b);
-	return (free (stack_a), free (stack_b), 0);
+	return (free(stack_a), free(stack_b), 0);
 }
 
 // void	print_stack_a_and_b(t_swag **stack_a, t_swag **stack_b)

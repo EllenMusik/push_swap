@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:54:59 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/08 16:15:32 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 17:47:57 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	push_b_to_a(t_swag **stack_a, t_swag **stack_b)
 int	push_stack_1_to_2(t_swag **stack_1, t_swag **stack_2)
 {
 	t_swag	*temp_node;
+	t_swag	*temp_new_first;
+	t_swag	*temp_last;
 
 	if (!*stack_1)
 		return (0);
@@ -40,8 +42,8 @@ int	push_stack_1_to_2(t_swag **stack_1, t_swag **stack_2)
 	}
 	else
 	{
-		t_swag *temp_new_first = temp_node->next;
-		t_swag *temp_last = temp_node->previous;
+		temp_new_first = temp_node->next;
+		temp_last = temp_node->previous;
 		temp_last->next = temp_new_first;
 		temp_new_first->previous = temp_last;
 		*stack_1 = temp_new_first;

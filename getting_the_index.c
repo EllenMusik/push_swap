@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:42:57 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/09 15:36:16 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 17:48:18 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	get_index(t_swag **stack_a)
 	{
 		write(2, "Error\n", 6);
 		free_list(stack_copy);
-		free (stack_copy);
+		free(stack_copy);
 		return (1);
 	}
 	sort_copy(stack_copy);
 	assign_index(stack_a, stack_copy);
 	free_list(stack_copy);
-	free (stack_copy);
+	free(stack_copy);
 	return (0);
 }
 
@@ -83,6 +83,7 @@ void	sort_copy(t_swag **stack_copy)
 	t_swag	*node1;
 	int		swap;
 	int		len;
+	int		i;
 
 	len = list_node_count(stack_copy);
 	swap = 0;
@@ -91,7 +92,7 @@ void	sort_copy(t_swag **stack_copy)
 	{
 		swap = 1;
 		node1 = *stack_copy;
-		int i = 0;
+		i = 0;
 		while (i < len - 1)
 		{
 			if (node1->number > node1->next->number)
@@ -134,4 +135,3 @@ int	copy_list(t_swag **stack_a, t_swag **stack_copy)
 	}
 	return (0);
 }
-
