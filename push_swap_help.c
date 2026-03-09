@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_help.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:08:36 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/08 00:13:41 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 15:16:52 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ t_swag	*list_new_node(int content)
 	node->number = content;
 	node->next = NULL;
 	node->previous = NULL;
+	node->position = 0;
+	node->total_cost = 0;
+	node->cost_a = 0;
+	node->cost_b = 0;
+	node->target_pos = 0;
 	node->index = 0;
 	return (node);
 }
@@ -33,7 +38,7 @@ void	list_add_back(t_swag **lst, t_swag *new_last)
 	t_swag	*old_last;
 	t_swag	*first_node;
 
-	old_last = list_find_last(*lst);
+	old_last = list_find_last(lst);
 	first_node = *lst;
 	if (*lst)
 	{
@@ -51,17 +56,16 @@ void	list_add_back(t_swag **lst, t_swag *new_last)
 }
 
 /* finds the last node of the given circular list */
-t_swag	*list_find_last(t_swag *lst)
+t_swag	*list_find_last(t_swag **lst)
 {
-	t_swag	*adresse;
+	t_swag	*current;
 
-	if (lst == NULL)
+	if (lst == NULL || *lst == NULL)
 		return (NULL);
-	if (lst->previous != NULL)
-		adresse = lst->previous;
-	else
-		adresse = lst;
-	return (adresse);
+	current = *lst;
+	while (current->next && current->next != *lst)
+		current = current->next;
+	return (current);
 }
 
 /* create the list "stack_a", made out of the given arguments/numbers */

@@ -6,11 +6,11 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 22:03:40 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/05 17:26:53 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 13:49:18 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /* rotates stack a so that the first node is now the last one */
 void	rotate_a(t_swag **stack_a)
@@ -38,11 +38,9 @@ void	rotate_b(t_swag **stack_b)
 /// @return nothing, but writes "rr\n" to the standard output
 void	rotate_both(t_swag **stack_a, t_swag **stack_b)
 {
-	t_swag	*temp_node;
-
-	temp_node = *stack_a;
-	*stack_a = temp_node->next;
-	temp_node = *stack_b;
-	*stack_b = temp_node->next;
-	write(1, "rr\n", 3);
+    if (stack_a && *stack_a && (*stack_a)->next != *stack_a)
+        *stack_a = (*stack_a)->next;
+    if (stack_b && *stack_b && (*stack_b)->next != *stack_b)
+        *stack_b = (*stack_b)->next;
+    write(1, "rr\n", 3);
 }

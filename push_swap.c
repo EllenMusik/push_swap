@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:12:51 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/14 15:40:53 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/06 13:18:01 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int	main(int argc, char **argv)
 // 	t_swag	*test_node;
 // 	t_swag	*last_node;
 
-// 	last_node = list_find_last(*stack_a);
+// 	last_node = list_find_last(stack_a);
 // 	test_node = *stack_a;
 // 	while (test_node && test_node != last_node)
 // 	{
@@ -146,7 +146,7 @@ int	main(int argc, char **argv)
 // 	}
 // 	if (test_node)
 // 		printf("a: %i\n\n", test_node->number);
-// 	last_node = list_find_last(*stack_b);
+// 	last_node = list_find_last(stack_b);
 // 	test_node = *stack_b;
 // 	while (test_node && test_node != last_node)
 // 	{

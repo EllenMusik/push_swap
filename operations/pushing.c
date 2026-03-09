@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pushing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:54:59 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/08 00:04:25 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:15:32 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /* pushes the first element from stack a to be the first elemnt from stack b */
 void	push_a_to_b(t_swag **stack_a, t_swag **stack_b)
@@ -30,29 +30,23 @@ void	push_b_to_a(t_swag **stack_a, t_swag **stack_b)
 int	push_stack_1_to_2(t_swag **stack_1, t_swag **stack_2)
 {
 	t_swag	*temp_node;
-	t_swag	*temp_new_first;
-	t_swag	*temp_last;
 
 	if (!*stack_1)
 		return (0);
 	temp_node = *stack_1;
 	if (temp_node == temp_node->next)
 	{
-		temp_new_first = NULL;
-		temp_last = NULL;
+		*stack_1 = NULL;
 	}
 	else
 	{
-		temp_new_first = temp_node->next;
-		temp_last = temp_node->previous;
-	}
-	list_add_front(stack_2, temp_node);
-	*stack_1 = temp_new_first;
-	if (temp_new_first)
-	{
+		t_swag *temp_new_first = temp_node->next;
+		t_swag *temp_last = temp_node->previous;
 		temp_last->next = temp_new_first;
 		temp_new_first->previous = temp_last;
+		*stack_1 = temp_new_first;
 	}
+	list_add_front(stack_2, temp_node);
 	return (0);
 }
 
@@ -64,7 +58,7 @@ void	list_add_front(t_swag **lst, t_swag *new_first)
 	t_swag	*last_node;
 
 	old_first = *lst;
-	last_node = list_find_last(*lst);
+	last_node = list_find_last(lst);
 	if (*lst)
 	{
 		old_first->previous = new_first;

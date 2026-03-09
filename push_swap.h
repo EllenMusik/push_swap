@@ -3,28 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:02:50 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/07 23:36:27 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:57:32 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
+#include <stdbool.h>
 
 typedef struct s_swag
 {
 	int				number;
 	long			index;
+	int				position;
+	int				cost_a;
+	int				cost_b;
+	int				total_cost;
+	int				target_pos;
 	struct s_swag	*next;
 	struct s_swag	*previous;
 }	t_swag;
 
 int		make_the_list(char **argv, t_swag **stack_a, int i);
 t_swag	*list_new_node(int content);
-t_swag	*list_find_last(t_swag *lst);
+t_swag	*list_find_last(t_swag **lst);
 void	list_add_back(t_swag **lst, t_swag *new_last);
 void	free_list(t_swag **lst);
 int		sorting_commands(t_swag **stack_a, t_swag **stack_b);
@@ -45,7 +51,7 @@ void	reverse_rotate_both(t_swag **stack_a, t_swag **stack_b);
 void	print_stack_a_and_b(t_swag **stack_a, t_swag **stack_b);
 int		is_it_already_sorted(t_swag **stack_a);
 int		sorting_when_3_numbers(t_swag **stack_a);
-int		list_node_count(t_swag *stack);
+int		list_node_count(t_swag **stack);
 int		sorting_3_2(t_swag *tmp1, t_swag *tmp2, t_swag *tmp3, t_swag **stack_a);
 int		get_index(t_swag **stack_a);
 void	sort_copy(t_swag **stack_copy);
@@ -54,6 +60,16 @@ int		copy_list(t_swag **stack_a, t_swag **stack_copy);
 void	assign_index(t_swag **stack_a, t_swag **stack_copy);
 int		sort_5(t_swag **stack_a, t_swag **stack_b);
 int		radix_sort(t_swag **stack_a, t_swag **stack_b);
-void	replace_with_index(t_swag **stack_a, t_swag **stack_copy);
+void	set_index(t_swag **stack_a, t_swag **stack_copy);
+int		cost_calculate_sort(t_swag **stack_a, t_swag **stack_b);
+void	push_all_but_3_b(t_swag **stack_a, t_swag **stack_b);
+void	calculate_each_node_cost(t_swag **stack_a, t_swag **stack_b);
+void	execute_lowest_cost_move(t_swag **stack_a, t_swag **stack_b);
+void	update_positions(t_swag **stack_a, t_swag **stack_b);
+void	find_target_positions(t_swag **stack_a, t_swag **stack_b);
+int		find_target_for_value(t_swag **stack_a, long index_b);
+int		get_max_index(t_swag **stack_a);
+int		get_position_of_lowest(t_swag **stack_a);
+int		use_reverse_rotate(t_swag **stack, int position);
 
 #endif

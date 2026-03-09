@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getting_the_index.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteiner <esteiner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:42:57 by esteiner          #+#    #+#             */
-/*   Updated: 2023/06/09 15:52:28 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:11:21 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	get_index(t_swag **stack_a)
 		write(2, "Error\n", 6);
 		free_list(stack_copy);
 		free (stack_copy);
+		return (1);
 	}
 	sort_copy(stack_copy);
 	assign_index(stack_a, stack_copy);
@@ -51,11 +52,11 @@ void	assign_index(t_swag **stack_a, t_swag **stack_copy)
 	}
 	if (temp_node)
 		temp_node->index = index;
-	replace_with_index(stack_a, stack_copy);
+	set_index(stack_a, stack_copy);
 }
 
 /* replaces the numbers in "stack_a" with it's index */
-void	replace_with_index(t_swag **stack_a, t_swag **stack_copy)
+void	set_index(t_swag **stack_a, t_swag **stack_copy)
 {
 	t_swag	*copy_node;
 	t_swag	*temp_node;
@@ -64,42 +65,48 @@ void	replace_with_index(t_swag **stack_a, t_swag **stack_copy)
 	copy_node = *stack_copy;
 	temp_node = *stack_a;
 	last_node = temp_node->previous;
-	while (temp_node && temp_node != last_node)
+	while (temp_node)
 	{
 		while (temp_node->number != copy_node->number)
 			copy_node = copy_node->next;
-		temp_node->number = copy_node->index;
+		temp_node->index = copy_node->index;
+		if (temp_node == last_node)
+			break ;
 		temp_node = temp_node->next;
 		copy_node = *stack_copy;
 	}
-	while (temp_node->number != copy_node->number)
-		copy_node = copy_node->next;
-	temp_node->number = copy_node->index;
 }
 
 /* uses a simple bubble sort algorithm to sort the numbers in "stack-copy" */
 void	sort_copy(t_swag **stack_copy)
 {
 	t_swag	*node1;
-	t_swag	*last;
 	int		swap;
+	int		len;
 
+	len = list_node_count(stack_copy);
 	swap = 0;
 	node1 = *stack_copy;
-	last = node1->previous;
-	while (swap == 0)
+	int pass = 0;
+	while (swap == 0 && pass < 100)
 	{
+		pass++;
 		swap = 1;
-		while (node1 && node1->next && node1 != last)
+		node1 = *stack_copy;
+		int i = 0;
+		while (i < len - 1)
 		{
 			if (node1->number > node1->next->number)
 			{
+				if (node1 == *stack_copy)
+					*stack_copy = node1->next;
 				swap_nodes(node1, node1->next);
 				swap = 0;
 			}
-			node1 = node1->next;
+			else
+				node1 = node1->next;
+			i++;
 		}
-		node1 = *stack_copy;
 	}
 }
 
@@ -129,3 +136,4 @@ int	copy_list(t_swag **stack_a, t_swag **stack_copy)
 	}
 	return (0);
 }
+
