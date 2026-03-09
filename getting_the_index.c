@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:42:57 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/08 16:11:21 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 15:36:16 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,8 @@ void	sort_copy(t_swag **stack_copy)
 	len = list_node_count(stack_copy);
 	swap = 0;
 	node1 = *stack_copy;
-	int pass = 0;
-	while (swap == 0 && pass < 100)
+	while (swap == 0)
 	{
-		pass++;
 		swap = 1;
 		node1 = *stack_copy;
 		int i = 0;
