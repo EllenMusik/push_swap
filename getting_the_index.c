@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:42:57 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/09 17:48:18 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 18:17:50 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,38 +74,6 @@ void	set_index(t_swag **stack_a, t_swag **stack_copy)
 			break ;
 		temp_node = temp_node->next;
 		copy_node = *stack_copy;
-	}
-}
-
-/* uses a simple bubble sort algorithm to sort the numbers in "stack-copy" */
-void	sort_copy(t_swag **stack_copy)
-{
-	t_swag	*node1;
-	int		swap;
-	int		len;
-	int		i;
-
-	len = list_node_count(stack_copy);
-	swap = 0;
-	node1 = *stack_copy;
-	while (swap == 0)
-	{
-		swap = 1;
-		node1 = *stack_copy;
-		i = 0;
-		while (i < len - 1)
-		{
-			if (node1->number > node1->next->number)
-			{
-				if (node1 == *stack_copy)
-					*stack_copy = node1->next;
-				swap_nodes(node1, node1->next);
-				swap = 0;
-			}
-			else
-				node1 = node1->next;
-			i++;
-		}
 	}
 }
 

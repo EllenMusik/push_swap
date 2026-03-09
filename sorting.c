@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:21:23 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/09 17:56:14 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 18:19:11 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,40 +74,61 @@ int	list_node_count(t_swag **stack)
 	return (counter);
 }
 
-void	print_stack_a_and_b(t_swag **stack_a, t_swag **stack_b)
+int	swap_sort(t_swag *node1, t_swag **stack_copy)
 {
-	t_swag	*test_node;
-	t_swag	*last_node;
-
-	last_node = list_find_last(stack_a);
-	test_node = *stack_a;
-	while (test_node)
-	{
-		printf("a: %i, ", test_node->number);
-		printf("index: %li, ", test_node->index);
-		printf("pos: %i, ", test_node->position);
-		printf("cost: %i, ", test_node->total_cost);
-		printf("target_pos: %i\n", test_node->target_pos);
-		if (test_node == last_node)
-			break ;
-		test_node = test_node->next;
-	}
-	printf("\n");
-	last_node = list_find_last(stack_b);
-	test_node = *stack_b;
-	while (test_node)
-	{
-		printf("b: %i, ", test_node->number);
-		printf("index: %li, ", test_node->index);
-		printf("pos: %i, ", test_node->position);
-		printf("cost: %i, ", test_node->total_cost);
-		printf("target_pos: %i\n", test_node->target_pos);
-		if (test_node == last_node)
-			break ;
-		test_node = test_node->next;
-	}
-	printf("____\n");
+	if (node1 == *stack_copy)
+		*stack_copy = node1->next;
+	swap_nodes(node1, node1->next);
+	return (0);
 }
+
+/* uses a simple bubble sort algorithm to sort the numbers in "stack-copy" */
+void	sort_copy(t_swag **stack_copy)
+{
+	t_swag	*node1;
+	int		swap;
+	int		len;
+	int		i;
+
+	len = list_node_count(stack_copy);
+	swap = 0;
+	node1 = *stack_copy;
+	while (swap == 0)
+	{
+		swap = 1;
+		node1 = *stack_copy;
+		i = 0;
+		while (i < len - 1)
+		{
+			if (node1->number > node1->next->number)
+				swap = swap_sort(node1, stack_copy);
+			else
+				node1 = node1->next;
+			i++;
+		}
+	}
+}
+
+// void	print_stack_a_and_b(t_swag **stack_a, t_swag **stack_b)
+// {
+// 	t_swag	*test_node;
+// 	t_swag	*last_node;
+
+// 	last_node = list_find_last(stack_a);
+// 	test_node = *stack_a;
+// 	while (test_node)
+// 	{
+// 		printf("a: %i, ", test_node->number);
+// 		printf("index: %li, ", test_node->index);
+// 		printf("pos: %i, ", test_node->position);
+// 		printf("cost: %i, ", test_node->total_cost);
+// 		printf("target_pos: %i\n", test_node->target_pos);
+// 		if (test_node == last_node)
+// 			break ;
+// 		test_node = test_node->next;
+// 	}
+// 	printf("\n");
+// }
 
 /*
 	uses bits to sort big amounts of numbers.

@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:02:50 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/09 17:38:19 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 18:17:15 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void				do_combined_rotations(t_swag **stack_a, t_swag **stack_b,
 t_swag				*find_lowest_cost_node(t_swag **stack_b);
 void				check_for_rr_and_rrr(t_swag **stack_a, t_swag **stack_b,
 						t_swag *current_b);
+int					swap_sort(t_swag *node1, t_swag **stack_copy);
 
 #endif

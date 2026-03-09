@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 17:28:29 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/09 18:03:05 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 18:22:59 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	cost_calculate_sort(t_swag **stack_a, t_swag **stack_b)
 		while ((*stack_a)->index != 1)
 			rotate_a(stack_a);
 	}
-	print_stack_a_and_b(stack_a, stack_b);
 	return (0);
 }
 
