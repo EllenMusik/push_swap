@@ -1,26 +1,55 @@
-NAME= push_swap.a
-CC = gcc
-#CFLAGS= -Wall -Werror -Wextra
-DEBUG = -fsanitize=address -g
-HEADER= push_swap.h
-RM= rm -rf
 NAME = push_swap
+BONUS_NAME = checker
 
-LIBFT= libft/libft.a
-OBJ_DIR= obj
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+DEBUG = -fsanitize=address -g
 
-FILES=	push_swap.c push_swap_help.c operations/pushing.c \
-		operations/swapping.c operations/rotating.c operations/reverse_rotating.c \
-		sorting.c getting_the_index.c sorting_3_and_5.c cost_calculate.c \
-		find_target_position.c execute_lowest_cost.c
+RM = rm -rf
 
-O_FILES= $(FILES:%.c=$(OBJ_DIR)/%.o)
+LIBFT = libft/libft.a
+
+OBJ_DIR = obj
+
+COMMON_SRC = push_swap_help.c \
+	sorting.c \
+	getting_the_index.c \
+	sorting_3_and_5.c \
+	cost_calculate.c \
+	find_target_position.c \
+	execute_lowest_cost.c
+
+SRC = push_swap.c \
+	operations/pushing.c \
+	operations/swapping.c \
+	operations/rotating.c \
+	operations/reverse_rotating.c \
+	$(COMMON_SRC)
+
+BONUS_SRC = bonus/checker.c \
+	bonus/operations/pushing.c \
+	bonus/operations/swapping.c \
+	bonus/operations/rotating.c \
+	bonus/operations/reverse_rotating.c \
+	bonus/execute_instructions.c \
+	get_next_line/get_next_line.c \
+	get_next_line/get_next_line_utils.c \
+	$(COMMON_SRC)
+
+OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
+BONUS_OBJ = $(BONUS_SRC:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(O_FILES)
-	$(MAKE) bonus -C libft
-	$(CC) $(CFLAGS) $(DEBUG) $(O_FILES) $(LIBFT) -o $(NAME)
+$(NAME): $(OBJ)
+	$(MAKE) -C libft
+	$(CC) $(CFLAGS) $(DEBUG) $(OBJ) $(LIBFT) -o $(NAME)
+
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(BONUS_OBJ)
+	$(MAKE) -C libft
+	$(CC) $(CFLAGS) $(DEBUG) $(BONUS_OBJ) $(LIBFT) -o $(BONUS_NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
@@ -29,11 +58,11 @@ $(OBJ_DIR)/%.o: %.c
 clean:
 	$(MAKE) clean -C libft
 	$(RM) $(OBJ_DIR)
-	
+
 fclean: clean
 	$(MAKE) fclean -C libft
-	$(RM) $(NAME)
-	
+	$(RM) $(NAME) $(BONUS_NAME)
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

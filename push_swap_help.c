@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:08:36 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/09 15:16:52 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/10 02:52:58 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,21 +92,21 @@ int	make_the_list(char **argv, t_swag **stack_a, int i)
 /* frees a circular list and all its contents */
 void	free_list(t_swag **lst)
 {
-	t_swag	*start;
+	t_swag	*last;
 	t_swag	*adresse;
 	t_swag	*temporary;
 
 	if (lst && *lst != NULL)
 	{
-		start = *lst;
-		adresse = start->next;
-		while (adresse && adresse != start)
+		last = list_find_last(lst);
+		adresse = *lst;
+		while (adresse != last)
 		{
 			temporary = adresse->next;
 			free(adresse);
 			adresse = temporary;
 		}
-		free(start);
+		free(last);
 		*lst = NULL;
 	}
 }

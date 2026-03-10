@@ -6,7 +6,7 @@
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:21:23 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/09 18:19:11 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 19:21:41 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,21 @@ int	sorting_commands(t_swag **stack_a, t_swag **stack_b)
 if it is not sorted it returns 1 */
 int	is_it_already_sorted(t_swag **stack_a)
 {
-	t_swag	*temp_node;
+	t_swag	*current;
+	t_swag	*previous;
 	t_swag	*last_node;
-	t_swag	*previous_node;
 
-	previous_node = NULL;
-	temp_node = *stack_a;
+	previous = NULL;
+	current = *stack_a;
 	last_node = list_find_last(stack_a);
-	while (temp_node)
+	while (current)
 	{
-		if (previous_node)
+		if (previous && current->number < previous->number)
 			return (1);
-		if (previous_node && temp_node->number < previous_node->number)
-			return (1);
-		previous_node = temp_node;
-		if (temp_node == last_node)
+		if (current == last_node)
 			break ;
-		temp_node = temp_node->next;
+		previous = current;
+		current = current->next;
 	}
 	return (0);
 }

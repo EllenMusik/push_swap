@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/09 18:38:08 by esteiner          #+#    #+#             */
+/*   Updated: 2026/03/10 16:27:07 by esteiner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap_bonus.h"
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esteiner <esteiner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:12:51 by esteiner          #+#    #+#             */
-/*   Updated: 2026/03/10 16:25:29 by esteiner         ###   ########.fr       */
+/*   Updated: 2026/03/09 17:48:29 by esteiner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 #include <stdio.h>
 #include <unistd.h>
 
@@ -55,7 +69,7 @@ static int	check_for_argv_error(char **argv, int startlist)
 		return (1);
 	while (argv[i])
 	{
-		if (!argv[i] || argv[i][0] == '\0' || !argv[i][0])
+		if (argv[i][0] == '\0')
 			return (1);
 		while (argv[i][k])
 		{
@@ -99,7 +113,7 @@ static int	check_for_stoopid_list(char *arg, t_swag **stack_a)
 static int	input_handling(t_swag **stack_a, int argc, char **argv)
 {
 	if (argc < 2)
-		return (0);
+		return (1);
 	if (argc == 2)
 	{
 		if (1 == check_for_stoopid_list(argv[1], stack_a))
@@ -126,9 +140,11 @@ int	main(int argc, char **argv)
 	*stack_b = NULL;
 	if (1 == input_handling(stack_a, argc, argv))
 		return (1);
-	if (is_it_already_sorted(stack_a) == 0)
-		return (free_list(stack_a), free(stack_a), free(stack_b), 0);
-	sorting_commands(stack_a, stack_b);
+	execute_instructions(stack_a, stack_b);
+	if (0 == is_it_already_sorted(stack_a) && list_node_count(stack_b) == 0)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
 	free_list(stack_a);
 	free_list(stack_b);
 	return (free(stack_a), free(stack_b), 0);
