@@ -34,13 +34,17 @@ void	swap_both(t_swag **stack_a, t_swag **stack_b)
 /* swaps the first 2 nodes*/
 int	swap_top(t_swag **stack)
 {
-	t_swag	*temp;
+	t_swag	*a;
+	t_swag	*b;
+	int		tmp;
 
-	if (!*stack || (*stack)->next == *stack || !(*stack)->previous)
+	if (!stack || !*stack || (*stack)->next == *stack)
 		return (1);
-	temp = (*stack)->next;
-	swap_nodes(*stack, temp);
-	*stack = temp;
+	a = *stack;
+	b = a->next;
+	tmp = a->number;
+	a->number = b->number;
+	b->number = tmp;
 	return (0);
 }
 

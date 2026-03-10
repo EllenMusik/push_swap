@@ -43,12 +43,20 @@ void	push_all_but_3_b(t_swag **stack_a, t_swag **stack_b)
 {
 	int	total_nodes;
 	int	pushed_count;
+	int	median;
 
 	total_nodes = list_node_count(stack_a);
 	pushed_count = 0;
+	median = total_nodes / 2;
 	while (total_nodes - pushed_count > 3)
 	{
-		push_a_to_b(stack_a, stack_b);
+		if ((*stack_a)->index < median)
+		{
+			push_a_to_b(stack_a, stack_b);
+			rotate_b(stack_b);
+		}
+		else
+			push_a_to_b(stack_a, stack_b);
 		pushed_count++;
 	}
 }
