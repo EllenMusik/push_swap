@@ -15,10 +15,10 @@
 /* checks based on the number of numbers what sortig method should be used */
 int	sorting_commands(t_swag **stack_a, t_swag **stack_b)
 {
-	get_index(stack_a);
 	if (2 == list_node_count(stack_a))
-		swap_a(stack_a);
-	else if (3 == list_node_count(stack_a))
+		return(swap_a(stack_a), 0);
+	get_index(stack_a);
+	if (3 == list_node_count(stack_a))
 		sorting_when_3_numbers(stack_a);
 	else if (5 >= list_node_count(stack_a))
 		sort_5(stack_a, stack_b);
