@@ -92,24 +92,20 @@ static int	check_for_stoopid_list(char *arg, t_swag **stack_a)
 {
 	int		i;
 	char	**splitted_list;
-	bool	error;
 
 	i = 0;
 	splitted_list = ft_split(arg, ' ');
-	error = false;
 	if (splitted_list == 0)
 		return (1);
 	if (1 == check_for_argv_error(splitted_list, 0))
-		error = true;
-	else if (1 == make_the_list(splitted_list, stack_a, 0))
-		error = true;
+		return (write(2, "Error\n", 6), 1);
+	if (1 == make_the_list(splitted_list, stack_a, 0))
+		return (free(stack_a), 1);
 	while (splitted_list[i])
 	{
 		free(splitted_list[i]);
 		i++;
 	}
-	if (error)
-		return (free(splitted_list), write(2, "Error\n", 6), 1);
 	return (free(splitted_list), 0);
 }
 
@@ -143,10 +139,7 @@ int	main(int argc, char **argv)
 	stack_b = malloc(sizeof(t_swag *));
 	*stack_b = NULL;
 	if (1 == input_handling(stack_a, argc, argv))
-	{
-		free_list(stack_a);
-		return (free(stack_a), free(stack_b), 1);
-	}
+		return (1);
 	execute_instructions(stack_a, stack_b);
 	if (0 == is_it_already_sorted(stack_a) && list_node_count(stack_b) == 0)
 		write(1, "OK\n", 3);

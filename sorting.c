@@ -15,10 +15,10 @@
 /* checks based on the number of numbers what sortig method should be used */
 int	sorting_commands(t_swag **stack_a, t_swag **stack_b)
 {
-	if (2 == list_node_count(stack_a))
-		return (swap_a(stack_a), 0);
 	get_index(stack_a);
-	if (3 == list_node_count(stack_a))
+	if (2 == list_node_count(stack_a))
+		swap_a(stack_a);
+	else if (3 == list_node_count(stack_a))
 		sorting_when_3_numbers(stack_a);
 	else if (5 >= list_node_count(stack_a))
 		sort_5(stack_a, stack_b);
@@ -134,7 +134,7 @@ void	sort_copy(t_swag **stack_copy)
 	if it is 0, it gets pushed to b,
 	if it is 1, we rotate a and lookat the same bit of the next number.
 	After the bit is checked for every number,
-	everything in b gets pushed to a again and
+	everything in b gets pushed to a again and 
 	the next bit from the back is checked
 	until the stack_a is completely sorted.
 	this works, because 1 is bigger than 0,
@@ -143,28 +143,28 @@ void	sort_copy(t_swag **stack_copy)
 */
 // int	radix_sort(t_swag **stack_a, t_swag **stack_b)
 // {
-// int	max_number;
-// int	number;
-// int	bit_number;
-// int	counter;
-// max_number = list_node_count(stack_a);
-// bit_number = 0;
-// counter = 0;
-// while (is_it_already_sorted(stack_a) != 0)
-// {
-// 	while (counter < max_number)
-// 	{
-// 		number = (*stack_a)->number;
-// 		if (((number >> bit_number) & 1) == 1)
-// 			rotate_a(stack_a);
-// 		else
-// 			push_a_to_b(stack_a, stack_b);
-// 		counter++;
-// 	}
-// 	while (*stack_b)
-// 		push_b_to_a(stack_a, stack_b);
-// 	bit_number++;
-// 	counter = 0;
-// }
-// return (0);
+	// int	max_number;
+	// int	number;
+	// int	bit_number;
+	// int	counter;
+	// max_number = list_node_count(stack_a);
+	// bit_number = 0;
+	// counter = 0;
+	// while (is_it_already_sorted(stack_a) != 0)
+	// {
+	// 	while (counter < max_number)
+	// 	{
+	// 		number = (*stack_a)->number;
+	// 		if (((number >> bit_number) & 1) == 1)
+	// 			rotate_a(stack_a);
+	// 		else
+	// 			push_a_to_b(stack_a, stack_b);
+	// 		counter++;
+	// 	}
+	// 	while (*stack_b)
+	// 		push_b_to_a(stack_a, stack_b);
+	// 	bit_number++;
+	// 	counter = 0;
+	// }
+	// return (0);
 // }
